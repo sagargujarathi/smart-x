@@ -1,0 +1,15 @@
+export const ROUTER_LINKS = {
+  HOME: "/",
+  DASHBOARD: "/dashboard",
+  SIGNIN: "/signin",
+  SIGNUP: "/signup",
+  UTILITIES: "/dashboard/utilities",
+  WATER: "/dashboard/utilities/water",
+  ELECTRICITY: "/dashboard/utilities/electricity",
+  WASTE: "/dashboard/utilities/waste",
+  ANALYTICS: "/dashboard/utilities/analytics",
+  MAP: "/dashboard/map",
+  USERS: "/dashboard/users",
+  SETTINGS: "/dashboard/settings",
+  UNAUTHORIZED: "/unauthorized",
+};
