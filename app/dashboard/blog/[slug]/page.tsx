@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { DashboardLayout } from "@/components/dashboard/DashboardLayout";
 import { useParams } from "next/navigation";
 import { useState, useEffect } from "react";
@@ -13,11 +14,30 @@ import {
 } from "react-icons/fa";
 import Link from "next/link";
 
+interface Post {
+  title: string;
+  content: string;
+  author: string;
+  authorRole: string;
+  date: string;
+  readTime: string;
+  category: string;
+  image: string;
+  tags: string[];
+}
+
+interface RelatedPost {
+  id: number;
+  title: string;
+  excerpt: string;
+  date: string;
+}
+
 export default function BlogPostPage() {
   const params = useParams();
-  const [post, setPost] = useState<any>(null);
+  const [post, setPost] = useState<Post | null>(null);
   const [loading, setLoading] = useState(true);
-  const [relatedPosts, setRelatedPosts] = useState([]);
+  const [relatedPosts, setRelatedPosts] = useState<RelatedPost[]>([]);
 
   useEffect(() => {
     // Simulate API call - replace with actual data fetch
@@ -79,10 +99,12 @@ export default function BlogPostPage() {
         </Link>
 
         <div className="relative h-96 rounded-lg overflow-hidden">
-          <img
+          <Image
             src={post.image}
             alt={post.title}
-            className="object-cover w-full h-full"
+            className="object-cover"
+            fill
+            priority
           />
         </div>
 

@@ -5,6 +5,7 @@ import { useState } from "react";
 import { FaClock, FaUser, FaTag } from "react-icons/fa";
 import Link from "next/link";
 import { QuickNav } from "@/components/dashboard/QuickNav";
+import Image from "next/image";
 
 export default function BlogPage() {
   const [selectedCategory, setSelectedCategory] = useState("all");
@@ -18,7 +19,7 @@ export default function BlogPage() {
       date: "2024-01-15",
       readTime: "10 min",
       category: "technology",
-      image: "/images/smart-city.jpg",
+      image: "https://images.unsplash.com/photo-1473341304170-971dccb5ac1e",
       featured: true,
     },
     // ...more posts
@@ -69,10 +70,11 @@ export default function BlogPage() {
               href={`/dashboard/blog/${post.id}`}
               className="block relative h-96 rounded-lg overflow-hidden group cursor-pointer"
             >
-              <img
+              <Image
                 src={post.image}
                 alt={post.title}
                 className="object-cover w-full h-full"
+                fill
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent" />
               <div className="absolute bottom-0 p-6">
@@ -112,10 +114,11 @@ export default function BlogPage() {
                 className="block bg-zinc-800/60 rounded-lg overflow-hidden group hover:bg-zinc-700/60 transition-colors"
               >
                 <div className="relative h-48">
-                  <img
+                  <Image
                     src={post.image}
                     alt={post.title}
-                    className="object-cover w-full h-full"
+                    className="object-cover"
+                    fill
                   />
                 </div>
                 <div className="p-6">
