@@ -1,19 +1,12 @@
 "use client";
 
 import { DashboardLayout } from "@/components/dashboard/DashboardLayout";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { FaClock, FaShare, FaBookmark } from "react-icons/fa";
 import { useParams } from "next/navigation";
 import Head from "next/head";
-import { AwarenessProgram } from "@/types/resources";
 import Image from "next/image";
 import { mockProgramDetail } from "@/mock/resourcesData";
-
-interface ProgramDetail extends AwarenessProgram {
-  content: string;
-  author: string;
-  date: string;
-}
 
 interface IProgramDetailType {
   image: string;
@@ -26,9 +19,8 @@ interface IProgramDetailType {
 }
 
 export default function AwarenessProgramPage() {
-  const params = useParams();
-  const [program, setProgram] = useState<IProgramDetailType>(mockProgramDetail);
-  const [loading, setLoading] = useState(false);
+  const [program] = useState<IProgramDetailType>(mockProgramDetail);
+  const [loading] = useState(false);
   const [error] = useState<string | null>(null);
 
   if (error) {
