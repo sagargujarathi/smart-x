@@ -9,6 +9,9 @@ import { utilityService } from "@/services/utilityService";
 import { UtilityChart } from "@/components/dashboard/utilities/UtilityChart";
 import { AlertsList } from "@/components/dashboard/utilities/AlertsList";
 import { use } from "react";
+import { EfficiencyMetrics } from "@/components/dashboard/utilities/EfficiencyMetrics";
+import { SolutionsList } from "@/components/dashboard/utilities/SolutionsList";
+import { UtilityPredictions } from "@/components/dashboard/predictions/UtilityPredictions";
 
 interface Props {
   params: Promise<{ type: string }>;
@@ -41,6 +44,69 @@ export default function UtilityDetailsPage({ params }: Props) {
 
     fetchUtilityStats();
   }, [type]);
+
+  const getEfficiencyData = () => {
+    const efficiencyMap = {
+      WATER: {
+        current: 85,
+        target: 95,
+        unit: "liters/person/day",
+        solutions: [
+          "Install smart meters",
+          "Fix leaking infrastructure",
+          "Implement pressure management",
+        ],
+      },
+      ELECTRICITY: {
+        current: 92,
+        target: 98,
+        unit: "kWh efficiency",
+        solutions: [
+          "Smart grid optimization",
+          "Peak load management",
+          "Renewable integration",
+        ],
+      },
+      WASTE: {
+        current: 75,
+        target: 90,
+        unit: "recycling rate",
+        solutions: [
+          "Improve sorting systems",
+          "Expand recycling programs",
+          "Community education",
+        ],
+      },
+    };
+
+    return efficiencyMap[type];
+  };
+
+  const getPredictionData = () => {
+    // Simulate prediction data - in production this would come from your API
+    const dates = Array.from(
+      { length: 30 },
+      (_, i) =>
+        new Date(Date.now() + i * 24 * 60 * 60 * 1000)
+          .toISOString()
+          .split("T")[0]
+    );
+
+    const baseValue =
+      type === "WATER" ? 2500 : type === "ELECTRICITY" ? 4000 : 1800;
+    const variation = baseValue * 0.2;
+
+    return {
+      dates,
+      actual: dates
+        .slice(0, 15)
+        .map(() => baseValue + (Math.random() - 0.5) * variation),
+      predicted: dates.map(() => baseValue + (Math.random() - 0.5) * variation),
+      upperBound: dates.map(() => baseValue + variation),
+      lowerBound: dates.map(() => baseValue - variation),
+      unit: type === "WATER" ? "kL" : type === "ELECTRICITY" ? "MWh" : "tons",
+    };
+  };
 
   if (loading || !stats) {
     return (
@@ -103,6 +169,22 @@ export default function UtilityDetailsPage({ params }: Props) {
 
         <div className="bg-zinc-800/60 p-4 rounded-lg">
           <AlertsList alerts={stats.alerts} />
+        </div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <div className="bg-zinc-800/60 p-6 rounded-lg">
+            <EfficiencyMetrics type={type} data={getEfficiencyData()} />
+          </div>
+          <div className="bg-zinc-800/60 p-6 rounded-lg">
+            <SolutionsList
+              solutions={getEfficiencyData().solutions}
+              type={type}
+            />
+          </div>
+        </div>
+
+        <div className="bg-zinc-800/60 p-6 rounded-lg">
+          <UtilityPredictions type={type} predictions={getPredictionData()} />
         </div>
       </div>
     </DashboardLayout>
