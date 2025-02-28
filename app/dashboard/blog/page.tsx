@@ -1,10 +1,10 @@
 "use client";
 
-import { DashboardLayout } from "@/components/dashboard/DashboardLayout";
+import { DashboardLayout } from "@/components/dashboard/dashboard-layout";
 import { useState } from "react";
 import { FaClock, FaUser, FaTag } from "react-icons/fa";
 import Link from "next/link";
-import { QuickNav } from "@/components/dashboard/QuickNav";
+import { QuickNav } from "@/components/dashboard/quick-nav";
 import Image from "next/image";
 
 export default function BlogPage() {

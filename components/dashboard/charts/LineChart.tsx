@@ -1,6 +1,5 @@
 "use client";
 
-import { Line } from "react-chartjs-2";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -12,6 +11,7 @@ import {
   Legend,
   ChartData,
 } from "chart.js";
+import { Line } from "react-chartjs-2";
 
 ChartJS.register(
   CategoryScale,
@@ -23,33 +23,35 @@ ChartJS.register(
   Legend
 );
 
-interface LineChartProps {
+export interface LineChartProps {
   data: ChartData<"line">;
-  title: string;
+  xAxis: string;
+  yAxis: string;
 }
 
-export const LineChart = ({ data, title }: LineChartProps) => {
+export function LineChart({ data, xAxis, yAxis }: LineChartProps) {
   const options = {
     responsive: true,
     plugins: {
       legend: {
         position: "top" as const,
       },
-      title: {
-        display: true,
-        text: title,
-      },
     },
     scales: {
+      x: {
+        title: {
+          display: true,
+          text: xAxis,
+        },
+      },
       y: {
-        beginAtZero: true,
+        title: {
+          display: true,
+          text: yAxis,
+        },
       },
     },
   };
 
-  return (
-    <div className="p-4 bg-secondary-100 rounded-xl">
-      <Line options={options} data={data} />
-    </div>
-  );
-};
+  return <Line options={options} data={data} />;
+}

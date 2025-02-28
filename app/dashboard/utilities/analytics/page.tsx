@@ -1,6 +1,6 @@
 "use client";
 
-import { DashboardLayout } from "@/components/dashboard/DashboardLayout";
+import { DashboardLayout } from "@/components/dashboard/dashboard-layout";
 import { useState, useEffect } from "react";
 import { utilityService } from "@/services/utilityService";
 import { UtilityStats, UtilityType } from "@/types/utility";

@@ -1,6 +1,6 @@
 "use client";
 
-import { DashboardLayout } from "@/components/dashboard/DashboardLayout";
+import { DashboardLayout } from "@/components/dashboard/dashboard-layout";
 import { StatsSummary } from "@/components/dashboard/stats/StatsSummary";
 import { UtilityType, UtilityStats } from "@/types/utility";
 import { notFound } from "next/navigation";

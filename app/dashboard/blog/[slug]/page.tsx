@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { DashboardLayout } from "@/components/dashboard/DashboardLayout";
+import { DashboardLayout } from "@/components/dashboard/dashboard-layout";
 import { useParams } from "next/navigation";
 import { useState, useEffect } from "react";
 import {

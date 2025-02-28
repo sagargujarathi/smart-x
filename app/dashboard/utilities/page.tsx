@@ -1,4 +1,4 @@
-import { DashboardLayout } from "@/components/dashboard/DashboardLayout";
+import { DashboardLayout } from "@/components/dashboard/dashboard-layout";
 import Link from "next/link";
 import { FaWater, FaLightbulb, FaTrash, FaChartLine } from "react-icons/fa";
 

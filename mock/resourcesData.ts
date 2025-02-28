@@ -160,71 +160,64 @@ export const mockProgramDetail = {
   title: "Smart Water Usage Program",
   description: "Learn how to reduce water consumption by up to 40%",
   content: `
-    <div class="prose prose-invert max-w-none">
-      <h2>Why Water Conservation Matters</h2>
-      <p>Water conservation is crucial for sustainable urban development. As cities grow and climate change affects water availability, it's becoming increasingly important to manage our water resources efficiently. This program helps you understand and implement effective water conservation strategies.</p>
-      
-      <h3>Program Objectives</h3>
-      <ul>
-        <li>Reduce household water consumption by 40%</li>
-        <li>Implement smart water monitoring systems</li>
-        <li>Develop sustainable water usage habits</li>
-        <li>Save money on water bills</li>
-      </ul>
-      
-      <h3>Key Components</h3>
-      <ol>
-        <li>
-          <strong>Smart Meter Installation</strong>
-          <p>Learn about smart water meters and how they help track usage in real-time.</p>
-        </li>
-        <li>
-          <strong>Leak Detection Workshop</strong>
-          <p>Hands-on training to identify and fix common household water leaks.</p>
-        </li>
-        <li>
-          <strong>Water-Efficient Fixtures</strong>
-          <p>Guide to selecting and installing water-efficient fixtures and appliances.</p>
-        </li>
-      </ol>
-      
-      <h3>Expected Benefits</h3>
-      <ul>
-        <li>Reduce water bills by up to 40%</li>
-        <li>Lower environmental impact</li>
-        <li>Contribute to community sustainability</li>
-        <li>Access to smart monitoring tools</li>
-      </ul>
+# Why Water Conservation Matters
 
-      <h3>Program Schedule</h3>
-      <table class="w-full border-collapse border border-zinc-800 my-4">
-        <thead>
-          <tr>
-            <th class="border border-zinc-800 p-2">Week</th>
-            <th class="border border-zinc-800 p-2">Topic</th>
-            <th class="border border-zinc-800 p-2">Format</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td class="border border-zinc-800 p-2">Week 1</td>
-            <td class="border border-zinc-800 p-2">Introduction to Water Conservation</td>
-            <td class="border border-zinc-800 p-2">Online Workshop</td>
-          </tr>
-          <tr>
-            <td class="border border-zinc-800 p-2">Week 2</td>
-            <td class="border border-zinc-800 p-2">Smart Meter Installation</td>
-            <td class="border border-zinc-800 p-2">On-site Training</td>
-          </tr>
-          <tr>
-            <td class="border border-zinc-800 p-2">Week 3</td>
-            <td class="border border-zinc-800 p-2">Usage Monitoring & Analysis</td>
-            <td class="border border-zinc-800 p-2">Online Workshop</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  `,
+Water conservation is crucial for sustainable urban development. As cities grow and climate change affects water availability, it's becoming increasingly important to manage our water resources efficiently.
+
+> 💡 **Quick Fact**: The average household wastes up to 180 gallons per week, or 9,400 gallons of water annually, from household leaks alone.
+
+## Program Objectives
+
+- [x] Define conservation goals
+- [x] Set up monitoring systems
+- [ ] Complete implementation
+- [ ] Review results
+
+## Key Technologies
+
+\`\`\`python
+def calculate_annual_savings(daily_usage: float, reduction_target: float) -> float:
+    """
+    Calculate potential annual water savings
+    
+    Parameters:
+    - daily_usage: Current daily water usage in liters
+    - reduction_target: Target reduction percentage (0-100)
+    
+    Returns:
+    - Annual savings in liters
+    """
+    annual_usage = daily_usage * 365
+    return annual_usage * (reduction_target / 100)
+\`\`\`
+
+## Implementation Steps 🚀
+
+1. **Assessment Phase** 
+   - Measure current usage 📊
+   - Identify waste points 🔍
+   - Set reduction targets 🎯
+
+2. **Installation Phase**
+   - Smart meter setup
+   - Leak detection systems
+   - Efficient fixtures
+
+> **Important**: All installations must comply with local building codes and regulations. Contact your local water authority for guidance.
+
+## Progress Tracking
+
+| Phase | Status | Completion |
+|-------|--------|------------|
+| Assessment | ✅ Complete | 100% |
+| Installation | 🔄 In Progress | 60% |
+| Monitoring | ⏳ Planned | 0% |
+| Review | ⏳ Planned | 0% |
+
+---
+
+Want to learn more about our water conservation methods? [Check out our detailed guide →](https://example.com)
+`,
   image: "https://images.unsplash.com/photo-1581244277943-fe4a9c777189",
   category: "water",
   readTime: "5 min",

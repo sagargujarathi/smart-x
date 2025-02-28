@@ -1,12 +1,12 @@
 "use client";
 
-import { DashboardLayout } from "@/components/dashboard/DashboardLayout";
-import { useAuth } from "@/context/AuthContext";
+import { DashboardLayout } from "@/components/dashboard/dashboard-layout";
+import { useAuthContext } from "@/context/auth-context";
 import { useState } from "react";
 import { HiCheck } from "react-icons/hi";
 
 export default function SettingsPage() {
-  const { user } = useAuth();
+  const { data } = useAuthContext();
   const [notifications, setNotifications] = useState({
     email: true,
     sms: false,
@@ -119,7 +119,7 @@ export default function SettingsPage() {
           </div>
 
           {/* Admin Settings Panel */}
-          {user?.role === "ADMIN" && (
+          {data?.role_type === "ADMIN" && (
             <div className="lg:col-span-1">
               <div className="bg-zinc-800/60 rounded-lg p-6">
                 <h2 className="text-lg font-medium text-white mb-4">

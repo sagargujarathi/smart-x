@@ -75,3 +75,75 @@ body {
 .dark-scrollbar::-webkit-scrollbar-thumb:hover {
   background: #3f3f46;
 }
+
+/* Custom map styles */
+.map-tiles {
+  filter: brightness(0.8) saturate(0.8);
+}
+
+.custom-marker {
+  background: transparent;
+}
+
+/* Enhanced map styles */
+.map-tiles-dark {
+  filter: invert(100%) hue-rotate(180deg) brightness(95%) contrast(90%);
+}
+
+.leaflet-container {
+  background: #1a1a1a;
+}
+
+.leaflet-popup-content-wrapper {
+  background: rgba(24, 24, 27, 0.95);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(63, 63, 70, 0.3);
+  color: white;
+}
+
+.leaflet-popup-tip {
+  background: rgba(24, 24, 27, 0.95);
+  border: 1px solid rgba(63, 63, 70, 0.3);
+}
+
+/* Add smooth transitions */
+.scale-102 {
+  transform: scale(1.02);
+}
+
+/* Animated gradients */
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.gradient-animate {
+  background-size: 200% 200%;
+  animation: gradient 15s ease infinite;
+}
+
+/* Improve scrollbar for the alerts grid */
+.alerts-grid {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.1) transparent;
+}
+
+.alerts-grid::-webkit-scrollbar {
+  width: 6px;
+}
+
+.alerts-grid::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.alerts-grid::-webkit-scrollbar-thumb {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 3px;
+}

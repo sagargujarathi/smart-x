@@ -1,4 +1,4 @@
-import * as React from "react";
+import { FC } from "react";
 import { cn } from "@/lib/utils";
 import { FaChevronDown } from "react-icons/fa";
 
@@ -14,12 +14,12 @@ export interface SelectProps {
   className?: string;
 }
 
-export function Select({
+export const Select: FC<SelectProps> = ({
   value,
   onValueChange,
   options,
-  className,
-}: SelectProps) {
+  className = "",
+}) => {
   return (
     <div className="relative">
       <select
@@ -39,4 +39,4 @@ export function Select({
       <FaChevronDown className="absolute right-3 top-1/2 h-4 w-4 -translate-y-1/2 text-zinc-400 pointer-events-none" />
     </div>
   );
-}
+};

@@ -1,6 +1,6 @@
 "use client";
 
-import { DashboardLayout } from "@/components/dashboard/DashboardLayout";
+import { DashboardLayout } from "@/components/dashboard/dashboard-layout";
 import { UtilityMap } from "@/components/dashboard/map/UtilityMap";
 import { utilityService } from "@/services/utilityService";
 import { UtilityAlert } from "@/types/utility";

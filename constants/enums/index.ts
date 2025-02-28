@@ -1,0 +1,21 @@
+export const enum USER_ROLE {
+  SUPER_ADMIN = "SUPER_ADMIN",
+  ADMIN = "ADMIN",
+  USER = "USER",
+}
+
+export const enum UTILITY_TYPE {
+  WATER = "WATER",
+  ELECTRICITY = "ELECTRICITY",
+  WASTE = "WASTE",
+  GENERAL = "GENERAL",
+}
+
+export const enum STATUS_TYPE {
+  ACTIVE = "ACTIVE",
+  INACTIVE = "INACTIVE",
+  BLOCKED = "BLOCKED",
+  DELETED = "DELETED",
+  PENDING = "PENDING",
+  RESOLVED = "RESOLVED",
+}

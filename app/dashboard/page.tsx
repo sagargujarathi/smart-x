@@ -1,10 +1,12 @@
-import { DashboardLayout } from "@/components/dashboard/DashboardLayout";
-import { DashboardOverview } from "@/components/dashboard/DashboardOverview";
+import { DashboardLayout } from "@/components/dashboard/dashboard-layout";
+import { DashboardOverview } from "@/components/dashboard/dashboard-overview";
 
-export default function DashboardPage() {
+const DashboardPage = () => {
   return (
     <DashboardLayout>
       <DashboardOverview />
     </DashboardLayout>
   );
-}
+};
+
+export default DashboardPage;
