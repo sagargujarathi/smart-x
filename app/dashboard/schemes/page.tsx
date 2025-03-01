@@ -18,7 +18,7 @@ export default function SchemesPage() {
       category: "electricity",
       status: "active",
       eligibility: "Residential properties",
-      fundingAmount: "Up to $5,000",
+      fundingAmount: "Up to ₹1,50,000",
     },
     // ...more schemes
   ];
