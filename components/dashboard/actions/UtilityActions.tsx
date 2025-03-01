@@ -18,7 +18,7 @@ export const UtilityActions = ({ type = "all" }: Props) => {
   useEffect(() => {
     const fetchActions = async () => {
       try {
-        const actionsData = await utilityService.getRecommendedActions();
+        const actionsData = await utilityService.getRecommendedActions(type);
         setActions(actionsData);
       } catch (error) {
         console.error("Error fetching recommended actions:", error);

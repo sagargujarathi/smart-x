@@ -40,7 +40,18 @@ const mockUtilities: UtilityData[] = [
     unit: "tons",
     status: "normal",
     lastUpdated: new Date().toISOString(),
-  }
+  },
+  {
+    id: "air-quality",
+    type: "AIRQUALITY",
+    name: "Air Quality Control",
+    currentUsage: 57.41,
+    previousUsage: 52.59,
+    prediction: 62,
+    unit: "aqi",
+    status: "warning",
+    lastUpdated: new Date().toISOString(),
+  },
 ];
 
 const mockAlerts: UtilityAlert[] = [
@@ -74,29 +85,72 @@ const mockAlerts: UtilityAlert[] = [
   },
 ];
 
-const mockActions: UtilityAction[] = [
-  {
-    id: "action-1",
-    name: "Reduce Peak Hour Usage",
-    description: "Implement smart load balancing during peak hours",
-    impact: "high",
-    estimatedSavings: 15,
-  },
-  {
-    id: "action-2",
-    name: "Optimize Water Pressure",
-    description: "Adjust water pressure in low-demand areas",
-    impact: "medium",
-    estimatedSavings: 8,
-  },
-  {
-    id: "action-3",
-    name: "Reroute Waste Collection",
-    description: "Optimize waste collection routes based on fill level",
-    impact: "medium",
-    estimatedSavings: 12,
-  },
-];
+const mockActions: Record<UtilityType, UtilityAction[]> = {
+  ELECTRICITY: [
+    {
+      id: "elec-1",
+      name: "Smart Grid Implementation",
+      description: "Deploy smart meters for real-time consumption monitoring",
+      impact: "high",
+      estimatedSavings: 20,
+    },
+    {
+      id: "elec-2",
+      name: "Peak Load Shifting",
+      description: "Shift non-critical operations to off-peak hours",
+      impact: "medium",
+      estimatedSavings: 15,
+    }
+  ],
+  WATER: [
+    {
+      id: "water-1",
+      name: "Leak Detection System",
+      description: "Install smart sensors for early leak detection",
+      impact: "high",
+      estimatedSavings: 25,
+    },
+    {
+      id: "water-2",
+      name: "Pressure Optimization",
+      description: "Implement dynamic pressure management",
+      impact: "medium",
+      estimatedSavings: 10,
+    }
+  ],
+  AIRQUALITY: [
+    {
+      id: "air-1",
+      name: "Ventilation Enhancement",
+      description: "Upgrade air filtration systems",
+      impact: "high",
+      estimatedSavings: 30,
+    },
+    {
+      id: "air-2",
+      name: "Pollution Monitoring",
+      description: "Install real-time air quality sensors",
+      impact: "medium",
+      estimatedSavings: 12,
+    }
+  ],
+  WASTE: [
+    {
+      id: "waste-1",
+      name: "Smart Waste Sorting",
+      description: "Implement automated waste segregation",
+      impact: "high",
+      estimatedSavings: 18,
+    },
+    {
+      id: "waste-2",
+      name: "Route Optimization",
+      description: "AI-based collection route planning",
+      impact: "medium",
+      estimatedSavings: 15,
+    }
+  ]
+};
 
 const MOCK_ALERTS = [
   {
@@ -186,9 +240,9 @@ export const utilityService = {
     });
   },
 
-  async getRecommendedActions(): Promise<UtilityAction[]> {
+  async getRecommendedActions(type:string): Promise<UtilityAction[]> {
     return new Promise((resolve) => {
-      setTimeout(() => resolve(mockActions), 300);
+      setTimeout(() => resolve(mockActions[type]), 300);
     });
   },
 
@@ -197,7 +251,7 @@ export const utilityService = {
       WATER: "water",
       ELECTRICITY: "electricity",
       WASTE: "waste",
-      AIR: "air-quality",
+      AIRQUALITY: "air-quality",
       TRAFFIC: "traffic"
     };
 
@@ -210,7 +264,7 @@ export const utilityService = {
         const timeoutId = setTimeout(() => controller.abort(), 30000); // 30 second timeout
 
         const response = await fetch(
-          `http://localhost:3200/predict/${mappedType}/${period}`,
+          `http://172.16.15.156:3200/predict/${mappedType}/${period}`,
           {
             method: "POST",
             signal: controller.signal

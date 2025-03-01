@@ -69,6 +69,19 @@ export default function UtilityAnalyticsPage() {
           target: 1800,
           unit: "tons",
         };
+      case "AIRQUALITY":
+      case "WASTE":
+        return {
+          current: stats?.currentUsage || 0,
+          previous: stats?.previousUsage || 0,
+          change: stats
+            ? ((stats.currentUsage - stats.previousUsage) /
+                stats.previousUsage) *
+              100
+            : 0,
+          target: 45,
+          unit: "aqi",
+        };
     }
   };
 
@@ -88,7 +101,7 @@ export default function UtilityAnalyticsPage() {
         </div>
 
         <div className="flex flex-wrap gap-4 mt-6">
-          {["ELECTRICITY", "WATER", "WASTE"].map((type) => (
+          {["ELECTRICITY", "WATER", "WASTE", "AIRQUALITY"].map((type) => (
             <button
               key={type}
               onClick={() => setUtilityType(type as UtilityType)}

@@ -30,7 +30,7 @@ interface Props {
   stats: UtilityStats;
   type: UtilityType;
   timeFrame: "daily" | "weekly" | "monthly";
-  weekly: number[];
+  weekly?: number[];
 }
 
 export const UtilityChart = ({ stats, type, timeFrame, weekly }: Props) => {
@@ -90,7 +90,7 @@ export const UtilityChart = ({ stats, type, timeFrame, weekly }: Props) => {
       datasets: [
         {
           label: `${type} Usage`,
-          data: weekly,
+          data: weekly || getData(),
           borderColor: getLineColor(),
           backgroundColor: getLineColor().replace("0.8", "0.2"),
           tension: 0.3,
