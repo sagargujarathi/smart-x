@@ -17,14 +17,14 @@ export const ROUTER_LINKS = {
   PROFILE: "/dashboard/profile",
   SETTINGS: "/dashboard/settings",
   NOTIFICATIONS: "/dashboard/notifications",
-  HELP: "/dashboard/help",
+  HELP: "/dashboard/register",
   SUPPORT: "/dashboard/support",
 
   ADMIN: {
     ROOT: "/admin",
-    DASHBOARD: "/admin/dashboard",
-    USERS: "/admin/users",
-    SECURITY: "/admin/security",
-    ANOMALIES: "/admin/anomalies",
+    DASHBOARD: "/dashboard",
+    USERS: "/dashboard/users",
+    SECURITY: "/dashboard/security",
+    ANOMALIES: "/dashboard/anomalies",
   },
 };

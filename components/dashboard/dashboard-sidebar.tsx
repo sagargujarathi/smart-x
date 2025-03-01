@@ -15,6 +15,7 @@ import {
   FaHandHoldingUsd,
   FaChartLine,
   FaCog,
+  FaQuestionCircle,
 } from "react-icons/fa";
 import { HiOutlineLogout } from "react-icons/hi";
 import {
@@ -79,6 +80,16 @@ const getNavLinks = (data?: IUserDetailsType) => {
           name: "Blog & Updates",
           href: ROUTER_LINKS.BLOGS,
           icon: <FaNewspaper className="h-5 w-5" />,
+        },
+      ],
+    },
+    {
+      label: "Account",
+      items: [
+        {
+          name: "Help Center",
+          href: ROUTER_LINKS.HELP,
+          icon: <FaQuestionCircle className="h-5 w-5" />,
         },
       ],
     },
