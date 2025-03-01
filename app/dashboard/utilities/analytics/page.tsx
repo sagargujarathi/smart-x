@@ -103,11 +103,7 @@ export default function UtilityAnalyticsPage() {
         </div>
 
         <div className="flex flex-wrap gap-4 mt-6">
-<<<<<<< HEAD
-          {["ELECTRICITY", "WATER", "WASTE", "AIRQUALITY"].map((type) => (
-=======
           {UTILITY_TYPE_OPTIONS.map((type) => (
->>>>>>> 2809a12d94990cb3c41adca08efc7d3a3acde8d2
             <button
               key={type.value}
               onClick={() => setUtilityType(type.value)}

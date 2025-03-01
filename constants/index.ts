@@ -9,6 +9,7 @@ export const UTILITY_TYPE_OPTIONS = [
   { label: "Water", value: UTILITY_TYPE.WATER },
   { label: "Electricity", value: UTILITY_TYPE.ELECTRICITY },
   { label: "Waste", value: UTILITY_TYPE.WASTE },
+  {label: 'Air Quality', value: UTILITY_TYPE.AIRQUALITY}
 ];
 
 export const TIME_RANGES = [

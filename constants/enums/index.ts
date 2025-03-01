@@ -9,6 +9,7 @@ export const enum UTILITY_TYPE {
   ELECTRICITY = "ELECTRICITY",
   WASTE = "WASTE",
   GENERAL = "GENERAL",
+  AIRQUALITY = "AIRQUALITY",
 }
 
 export const enum STATUS_TYPE {

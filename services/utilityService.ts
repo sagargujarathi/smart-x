@@ -142,7 +142,7 @@ const mockActions: Record<UtilityType, UtilityAction[]> = {
       description: "Shift non-critical operations to off-peak hours",
       impact: "medium",
       estimatedSavings: 15,
-    }
+    },
   ],
   WATER: [
     {
@@ -158,7 +158,7 @@ const mockActions: Record<UtilityType, UtilityAction[]> = {
       description: "Implement dynamic pressure management",
       impact: "medium",
       estimatedSavings: 10,
-    }
+    },
   ],
   AIRQUALITY: [
     {
@@ -174,7 +174,7 @@ const mockActions: Record<UtilityType, UtilityAction[]> = {
       description: "Install real-time air quality sensors",
       impact: "medium",
       estimatedSavings: 12,
-    }
+    },
   ],
   WASTE: [
     {
@@ -190,8 +190,8 @@ const mockActions: Record<UtilityType, UtilityAction[]> = {
       description: "AI-based collection route planning",
       impact: "medium",
       estimatedSavings: 15,
-    }
-  ]
+    },
+  ],
 };
 
 const MOCK_ALERTS = [
@@ -243,13 +243,9 @@ const MOCK_ALERTS = [
     },
     timestamp: new Date().toISOString(),
   },
-<<<<<<< HEAD
-  
-=======
->>>>>>> 2809a12d94990cb3c41adca08efc7d3a3acde8d2
 ];
 
-const wait = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
+const wait = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
 export const utilityService = {
   getUtilities: async () => {
@@ -309,19 +305,23 @@ export const utilityService = {
     });
   },
 
-  async getRecommendedActions(type:string): Promise<UtilityAction[]> {
+  async getRecommendedActions(type: string): Promise<UtilityAction[]> {
     return new Promise((resolve) => {
       setTimeout(() => resolve(mockActions[type]), 300);
     });
   },
 
-  getPredictions: async (type: string, period: string = "month", retries = 3) => {
+  getPredictions: async (
+    type: string,
+    period: string = "month",
+    retries = 3
+  ) => {
     const typeMap: Record<string, string> = {
       WATER: "water",
       ELECTRICITY: "electricity",
       WASTE: "waste",
       AIRQUALITY: "air-quality",
-      TRAFFIC: "traffic"
+      TRAFFIC: "traffic",
     };
 
     const mappedType = typeMap[type];
@@ -336,14 +336,16 @@ export const utilityService = {
           `http://172.16.15.156:3200/predict/${mappedType}/${period}`,
           {
             method: "POST",
-            signal: controller.signal
+            signal: controller.signal,
           }
         );
 
         clearTimeout(timeoutId);
 
         if (!response.ok) {
-          throw new Error(`Failed to fetch predictions: ${response.statusText}`);
+          throw new Error(
+            `Failed to fetch predictions: ${response.statusText}`
+          );
         }
 
         return await response.json();
@@ -352,5 +354,5 @@ export const utilityService = {
         await wait(1000 * (i + 1)); // Exponential backoff
       }
     }
-  }
+  },
 };
