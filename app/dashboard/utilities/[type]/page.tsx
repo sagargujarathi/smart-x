@@ -12,6 +12,7 @@ import { use } from "react";
 import { EfficiencyMetrics } from "@/components/dashboard/utilities/EfficiencyMetrics";
 import { SolutionsList } from "@/components/dashboard/utilities/SolutionsList";
 import { UtilityPredictions } from "@/components/dashboard/predictions/UtilityPredictions";
+import { LoadingSpinner } from "@/components/ui/loading-spinner";
 
 interface Props {
   params: Promise<{ type: string }>;
@@ -25,24 +26,45 @@ export default function UtilityDetailsPage({ params }: Props) {
     "daily"
   );
   const [loading, setLoading] = useState(true);
+  const [predictions, setPredictions] = useState(null);
+  const [predictionError, setPredictionError] = useState<string | null>(null);
+  const [isPredictionLoading, setIsPredictionLoading] = useState(true);
 
   if (!["WATER", "ELECTRICITY", "WASTE"].includes(type)) {
     notFound();
   }
 
   useEffect(() => {
-    const fetchUtilityStats = async () => {
+    const fetchData = async () => {
       try {
-        const data = await utilityService.getUtilityStats(type);
-        setStats(data);
+        setLoading(true);
+        setIsPredictionLoading(true);
+        setPredictionError(null);
+
+        const [statsData, predictionsData] = await Promise.all([
+          utilityService.getUtilityStats(type),
+          utilityService.getPredictions(type).catch((error) => {
+            console.error("Prediction fetch error:", error);
+            setPredictionError(
+              error instanceof Error
+                ? error.message
+                : "Failed to fetch predictions"
+            );
+            return null;
+          }),
+        ]);
+
+        setStats(statsData);
+        setPredictions(predictionsData);
       } catch (error) {
-        console.error(`Error fetching ${type} stats:`, error);
+        console.error(`Error fetching data:`, error);
       } finally {
         setLoading(false);
+        setIsPredictionLoading(false);
       }
     };
 
-    fetchUtilityStats();
+    fetchData();
   }, [type]);
 
   const getEfficiencyData = () => {
@@ -80,32 +102,6 @@ export default function UtilityDetailsPage({ params }: Props) {
     };
 
     return efficiencyMap[type];
-  };
-
-  const getPredictionData = () => {
-    // Simulate prediction data - in production this would come from your API
-    const dates = Array.from(
-      { length: 30 },
-      (_, i) =>
-        new Date(Date.now() + i * 24 * 60 * 60 * 1000)
-          .toISOString()
-          .split("T")[0]
-    );
-
-    const baseValue =
-      type === "WATER" ? 2500 : type === "ELECTRICITY" ? 4000 : 1800;
-    const variation = baseValue * 0.2;
-
-    return {
-      dates,
-      actual: dates
-        .slice(0, 15)
-        .map(() => baseValue + (Math.random() - 0.5) * variation),
-      predicted: dates.map(() => baseValue + (Math.random() - 0.5) * variation),
-      upperBound: dates.map(() => baseValue + variation),
-      lowerBound: dates.map(() => baseValue - variation),
-      unit: type === "WATER" ? "kL" : type === "ELECTRICITY" ? "MWh" : "tons",
-    };
   };
 
   if (loading || !stats) {
@@ -163,8 +159,25 @@ export default function UtilityDetailsPage({ params }: Props) {
               </button>
             </div>
           </div>
-
-          <UtilityChart stats={stats} type={type} timeFrame={timeFrame} />
+          {isPredictionLoading ? (
+            <div className="flex flex-col items-center justify-center p-8 space-y-4">
+              <LoadingSpinner />
+              <p className="text-white/60">Loading data...</p>
+            </div>
+          ) : predictionError ? (
+            <div className="text-red-400 p-4 space-y-2">
+              <p>Error loading data: {predictionError}</p>
+            </div>
+          ) : !predictions ? (
+            <div className="text-white/60 p-4">No data available</div>
+          ) : (
+            <UtilityChart
+              stats={stats}
+              type={type}
+              timeFrame={timeFrame}
+              weekly={predictions.daily}
+            />
+          )}
         </div>
 
         <div className="bg-zinc-800/60 p-4 rounded-lg">
@@ -184,7 +197,36 @@ export default function UtilityDetailsPage({ params }: Props) {
         </div>
 
         <div className="bg-zinc-800/60 p-6 rounded-lg">
-          <UtilityPredictions type={type} predictions={getPredictionData()} />
+          {isPredictionLoading ? (
+            <div className="flex flex-col items-center justify-center p-8 space-y-4">
+              <LoadingSpinner />
+              <p className="text-white/60">Loading prediction data...</p>
+            </div>
+          ) : predictionError ? (
+            <div className="text-red-400 p-4 space-y-2">
+              <p>Error loading predictions: {predictionError}</p>
+              <button
+                onClick={() => {
+                  setIsPredictionLoading(true);
+                  setPredictionError(null);
+                  utilityService
+                    .getPredictions(type)
+                    .then(setPredictions)
+                    .catch((error) => setPredictionError(error.message))
+                    .finally(() => setIsPredictionLoading(false));
+                }}
+                className="px-4 py-2 bg-red-500/20 text-red-400 rounded-md text-sm hover:bg-red-500/30"
+              >
+                Retry
+              </button>
+            </div>
+          ) : !predictions ? (
+            <div className="text-white/60 p-4">
+              No prediction data available
+            </div>
+          ) : (
+            <UtilityPredictions type={type} predictions={predictions} />
+          )}
         </div>
       </div>
     </DashboardLayout>

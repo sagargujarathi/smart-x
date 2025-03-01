@@ -191,6 +191,8 @@ const MOCK_ALERTS = [
   },
 ];
 
+const wait = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
+
 export const utilityService = {
   getUtilities: async () => {
     // Simulate API delay
@@ -254,4 +256,43 @@ export const utilityService = {
       setTimeout(() => resolve(mockActions), 300);
     });
   },
+
+  getPredictions: async (type: string, period: string = "month", retries = 3) => {
+    const typeMap: Record<string, string> = {
+      WATER: "water",
+      ELECTRICITY: "electricity",
+      WASTE: "waste",
+      AIR: "air-quality",
+      TRAFFIC: "traffic"
+    };
+
+    const mappedType = typeMap[type];
+    if (!mappedType) throw new Error("Invalid utility type");
+
+    for (let i = 0; i < retries; i++) {
+      try {
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), 30000); // 30 second timeout
+
+        const response = await fetch(
+          `http://localhost:3200/predict/${mappedType}/${period}`,
+          {
+            method: "POST",
+            signal: controller.signal
+          }
+        );
+
+        clearTimeout(timeoutId);
+
+        if (!response.ok) {
+          throw new Error(`Failed to fetch predictions: ${response.statusText}`);
+        }
+
+        return await response.json();
+      } catch (error) {
+        if (i === retries - 1) throw error;
+        await wait(1000 * (i + 1)); // Exponential backoff
+      }
+    }
+  }
 };

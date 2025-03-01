@@ -30,9 +30,10 @@ interface Props {
   stats: UtilityStats;
   type: UtilityType;
   timeFrame: "daily" | "weekly" | "monthly";
+  weekly: number[];
 }
 
-export const UtilityChart = ({ stats, type, timeFrame }: Props) => {
+export const UtilityChart = ({ stats, type, timeFrame, weekly }: Props) => {
   const [chartData, setChartData] = useState<any>(null);
 
   useEffect(() => {
@@ -59,7 +60,7 @@ export const UtilityChart = ({ stats, type, timeFrame }: Props) => {
           ];
       }
     };
-
+    console.log(chartData);
     const getData = () => {
       switch (timeFrame) {
         case "daily":
@@ -87,14 +88,14 @@ export const UtilityChart = ({ stats, type, timeFrame }: Props) => {
       datasets: [
         {
           label: `${type} Usage`,
-          data: getData(),
+          data: weekly,
           borderColor: getLineColor(),
           backgroundColor: getLineColor().replace("0.8", "0.2"),
           tension: 0.3,
         },
       ],
     });
-  }, [stats, type, timeFrame]);
+  }, [stats, type, timeFrame, weekly]);
 
   const chartOptions: ChartOptions<"line"> = {
     responsive: true,

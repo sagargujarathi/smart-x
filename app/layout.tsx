@@ -12,9 +12,7 @@ const RootLayout = ({ children }: IRootLayoutType) => {
     <html>
       <body>
         <QueryProvider>
-          <AuthProvider>
-            <AuthGuard>{children}</AuthGuard>
-          </AuthProvider>
+          <AuthProvider>{children}</AuthProvider>
         </QueryProvider>
       </body>
     </html>
