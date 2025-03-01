@@ -2,7 +2,6 @@
 
 import Image from "next/image";
 import { DashboardLayout } from "@/components/dashboard/dashboard-layout";
-import { useParams } from "next/navigation";
 import { useState, useEffect } from "react";
 import {
   FaClock,
@@ -13,18 +12,10 @@ import {
   FaThumbsUp,
 } from "react-icons/fa";
 import Link from "next/link";
-
-interface Post {
-  title: string;
-  content: string;
-  author: string;
-  authorRole: string;
-  date: string;
-  readTime: string;
-  category: string;
-  image: string;
-  tags: string[];
-}
+import { POSTS } from "@/mock/resourcesData";
+import LoadingPage from "@/app/(loading)/loading";
+import { useParams } from "next/navigation";
+import { MarkdownContent } from "@/components/shared/markdown-content";
 
 interface RelatedPost {
   id: number;
@@ -34,58 +25,24 @@ interface RelatedPost {
 }
 
 export default function BlogPostPage() {
-  const params = useParams();
-  const [post, setPost] = useState<Post | null>(null);
+  const params = useParams() as unknown as { slug: string };
+  const [post, setPost] = useState<(typeof POSTS)[0] | null>(null);
   const [loading, setLoading] = useState(true);
   const [relatedPosts, setRelatedPosts] = useState<RelatedPost[]>([]);
+  console.log(params);
 
   useEffect(() => {
     // Simulate API call - replace with actual data fetch
-    setPost({
-      title: "Future of Smart Cities",
-      content: `<div class="prose prose-invert max-w-none">
-        <p class="lead">Smart cities are revolutionizing how we manage urban infrastructure...</p>
-        <h2>The Evolution of Urban Utilities</h2>
-        <p>Modern cities are embracing digital transformation...</p>
-        <h3>Key Technologies</h3>
-        <ul>
-          <li>IoT Sensors and Monitoring</li>
-          <li>AI-Powered Grid Management</li>
-          <li>Predictive Maintenance Systems</li>
-        </ul>
-        <h3>Future Implications</h3>
-        <p>As we look towards the future...</p>
-      </div>`,
-      author: "Dr. Sarah Johnson",
-      authorRole: "Urban Technology Specialist",
-      date: "2024-01-15",
-      readTime: "10 min",
-      category: "technology",
-      image: "/images/smart-city.jpg",
-      tags: ["smart city", "innovation", "sustainability"],
-    });
+    const foundPost = POSTS.find((post) => post.id === Number(params.slug));
+    setPost(foundPost);
 
-    setRelatedPosts([
-      {
-        id: 2,
-        title: "Sustainable Urban Planning",
-        excerpt: "Creating eco-friendly city infrastructure...",
-        date: "2024-01-20",
-      },
-      // Add more related posts...
-    ]);
+    setRelatedPosts([POSTS[2]]);
 
     setLoading(false);
   }, [params.slug]);
 
-  if (loading) {
-    return (
-      <DashboardLayout>
-        <div className="flex items-center justify-center h-64">
-          <div className="text-white">Loading article...</div>
-        </div>
-      </DashboardLayout>
-    );
+  if (loading || !post) {
+    return <LoadingPage />;
   }
 
   return (
@@ -100,8 +57,8 @@ export default function BlogPostPage() {
 
         <div className="relative h-96 rounded-lg overflow-hidden">
           <Image
-            src={post.image}
-            alt={post.title}
+            src={post?.image}
+            alt={post?.title}
             className="object-cover"
             fill
             priority
@@ -141,10 +98,7 @@ export default function BlogPostPage() {
           </div>
         </div>
 
-        <div
-          className="text-zinc-300 leading-relaxed"
-          dangerouslySetInnerHTML={{ __html: post.content }}
-        />
+        <MarkdownContent content={post.content || ""} />
 
         <div className="border-t border-zinc-800 pt-8 mt-8">
           <h3 className="text-xl font-semibold text-white mb-4">

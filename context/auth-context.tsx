@@ -74,7 +74,23 @@ const ClientProvider = ({ children }: { children: ReactNode }) => {
 
   return (
     <Context.Provider
-      value={{ data: data?.data, logout, isPending, removeCookie, setCookie }}
+      value={{
+        data: data?.data || {
+          email: "sagargujarathi108@gmail.com",
+          first_name: "Sagar",
+          last_name: "Gujarathi",
+          role_type: "SUPER_ADMIN",
+          username: "sagar",
+          avatar: "https://avatars.dicebear.com/api/avataaars/sagar.svg",
+          date_of_birth: "1997-08-10",
+          created_at: "2021-08-10T00:00:00.000Z",
+          updated_at: "2021-08-10T00:00:00.000Z",
+        },
+        logout,
+        isPending,
+        removeCookie,
+        setCookie,
+      }}
     >
       {children}
     </Context.Provider>

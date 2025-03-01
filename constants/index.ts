@@ -36,4 +36,4 @@ export const CATEGORY_OPTIONS = [
 export const ACCESS_TOKEN_KEY = "ACCESS_TOKEN";
 export const REFRESH_TOKEN_KEY = "REFRESH_TOKEN";
 
-export const SERVICE_ID = "85211946-033c-4309-87a3-4f0309e23e30";
+export const SERVICE_ID = "0fd32409-2db0-4f3c-b427-b10d6d5518f4";

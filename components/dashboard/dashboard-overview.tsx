@@ -9,6 +9,7 @@ import { AwarenessCard } from "./awareness/AwarenessCard";
 import Link from "next/link";
 import { NotificationBell } from "./notifications/NotificationBell";
 import { FaLightbulb, FaHandHoldingUsd, FaNewspaper } from "react-icons/fa";
+import LoadingPage from "@/app/(loading)/loading";
 
 export const DashboardOverview = () => {
   const [utilities, setUtilities] = useState<UtilityData[]>([]);
@@ -44,13 +45,13 @@ export const DashboardOverview = () => {
       id: 1,
       title: "🌟 New Water Conservation Scheme",
       description: "Save up to 40% on your water bill! Learn how...",
-      link: "/awareness/water-conservation",
+      link: "/dashboard/awareness/water-conservation",
     },
     {
       id: 2,
       title: "⚡ Smart Energy Challenge",
       description: "Join thousands saving energy - Win exciting prizes!",
-      link: "/awareness/energy-challenge",
+      link: "/dashboard/awareness/energy-challenge",
     },
   ]);
 
@@ -79,11 +80,7 @@ export const DashboardOverview = () => {
   ];
 
   if (loading) {
-    return (
-      <div className="flex items-center justify-center h-64">
-        <div className="text-white">Loading dashboard data...</div>
-      </div>
-    );
+    return <LoadingPage />;
   }
 
   return (
@@ -138,7 +135,7 @@ export const DashboardOverview = () => {
               <AwarenessCard key={item.id} {...item} />
             ))}
             <Link
-              href="/awareness"
+              href="/dashboard/awareness"
               className="block text-primary-100 hover:text-primary-200 text-sm mt-4"
             >
               View all programs →

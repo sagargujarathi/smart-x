@@ -1,6 +1,6 @@
 export const IMAGES = {
   auth: {
-    background: "/images/auth/auth-bg.jpg",
+    background: "/images/auth/auth-bg.png",
   },
   blog: {
     smartCity: "/images/blog/smart-city.jpg",
