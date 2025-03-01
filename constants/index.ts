@@ -9,7 +9,7 @@ export const UTILITY_TYPE_OPTIONS = [
   { label: "Water", value: UTILITY_TYPE.WATER },
   { label: "Electricity", value: UTILITY_TYPE.ELECTRICITY },
   { label: "Waste", value: UTILITY_TYPE.WASTE },
-  {label: 'Air Quality', value: UTILITY_TYPE.AIRQUALITY}
+  { label: "Air Quality", value: UTILITY_TYPE.AIRQUALITY },
 ];
 
 export const TIME_RANGES = [
@@ -37,4 +37,4 @@ export const CATEGORY_OPTIONS = [
 export const ACCESS_TOKEN_KEY = "ACCESS_TOKEN";
 export const REFRESH_TOKEN_KEY = "REFRESH_TOKEN";
 
-export const SERVICE_ID = "0fd32409-2db0-4f3c-b427-b10d6d5518f4";
+export const SERVICE_ID = "6e8c3458-3712-4ed6-b6d6-f40d5505f577";

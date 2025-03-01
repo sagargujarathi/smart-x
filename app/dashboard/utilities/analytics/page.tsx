@@ -8,6 +8,7 @@ import { UtilityChart } from "@/components/dashboard/utilities/UtilityChart";
 import { UtilityActions } from "@/components/dashboard/actions/UtilityActions";
 import { UTILITY_TYPE_OPTIONS } from "@/constants";
 import { UTILITY_TYPE } from "@/constants/enums";
+import LoadingPage from "@/app/(loading)/loading";
 
 export default function UtilityAnalyticsPage() {
   const [utilityType, setUtilityType] = useState<UTILITY_TYPE>("ELECTRICITY");
@@ -119,11 +120,7 @@ export default function UtilityAnalyticsPage() {
         </div>
 
         {loading ? (
-          <div className="h-64 flex items-center justify-center">
-            <div className="text-white">
-              Loading {utilityType.toLowerCase()} analytics...
-            </div>
-          </div>
+          <LoadingPage />
         ) : stats ? (
           <>
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">

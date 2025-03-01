@@ -6,7 +6,7 @@ import { useAuthContext } from "@/context/auth-context";
 import { ROUTER_LINKS } from "@/router-links";
 import { IUserDetailsType } from "@/types/auth";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import {
   FaHome,
   FaToolbox,
@@ -15,8 +15,6 @@ import {
   FaHandHoldingUsd,
   FaChartLine,
   FaCog,
-  FaQuestionCircle,
-  FaUserCircle,
 } from "react-icons/fa";
 import { HiOutlineLogout } from "react-icons/hi";
 import {
@@ -84,21 +82,6 @@ const getNavLinks = (data?: IUserDetailsType) => {
         },
       ],
     },
-    {
-      label: "Account",
-      items: [
-        {
-          name: "Profile",
-          href: ROUTER_LINKS.PROFILE,
-          icon: <FaUserCircle className="h-5 w-5" />,
-        },
-        {
-          name: "Help Center",
-          href: ROUTER_LINKS.HELP,
-          icon: <FaQuestionCircle className="h-5 w-5" />,
-        },
-      ],
-    },
     // Admin-only navigation group
     ...(isAdmin
       ? [
@@ -133,6 +116,7 @@ const getNavLinks = (data?: IUserDetailsType) => {
 };
 
 export const DashboardSidebar = () => {
+  const router = useRouter();
   const { data, logout } = useAuthContext();
   const pathname = usePathname();
 
@@ -217,7 +201,10 @@ export const DashboardSidebar = () => {
             </p>
           </div>
           <button
-            onClick={logout}
+            onClick={() => {
+              logout();
+              router.push(ROUTER_LINKS.SIGNIN);
+            }}
             className="p-2 text-zinc-400 hover:text-white rounded-md hover:bg-zinc-700"
             title="Sign out"
           >

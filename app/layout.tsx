@@ -2,7 +2,6 @@ import { ReactNode } from "react";
 import "./globals.css";
 import AuthProvider from "@/context/auth-context";
 import QueryProvider from "@/context/query-provider";
-import AuthGuard from "@/context/auth-guard";
 interface IRootLayoutType {
   children: ReactNode;
 }
