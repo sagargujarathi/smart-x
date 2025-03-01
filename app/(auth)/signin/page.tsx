@@ -11,8 +11,11 @@ import { schema, SignInFormType } from "./schema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import RHFInputField from "@/utils/hook-form/rhf-input-field";
 import { SERVICE_ID } from "@/constants";
+import { useRouter } from "next/navigation";
+import { ROUTER_LINKS } from "@/router-links";
 
 export default function SignInPage() {
+  const router = useRouter();
   const methods = useForm({
     resolver: zodResolver(schema),
     defaultValues: {
@@ -31,6 +34,9 @@ export default function SignInPage() {
   } = useMutation({
     mutationKey: ["sign-in"],
     mutationFn: HTTPService.signIn,
+    onSuccess: () => {
+      router.push(ROUTER_LINKS.ROOT);
+    },
   });
 
   const onSubmit = (data: SignInFormType) => {

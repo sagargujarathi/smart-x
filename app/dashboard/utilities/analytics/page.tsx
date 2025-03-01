@@ -3,12 +3,14 @@
 import { DashboardLayout } from "@/components/dashboard/dashboard-layout";
 import { useState, useEffect } from "react";
 import { utilityService } from "@/services/utilityService";
-import { UtilityStats, UtilityType } from "@/types/utility";
+import { UtilityStats } from "@/types/utility";
 import { UtilityChart } from "@/components/dashboard/utilities/UtilityChart";
 import { UtilityActions } from "@/components/dashboard/actions/UtilityActions";
+import { UTILITY_TYPE_OPTIONS } from "@/constants";
+import { UTILITY_TYPE } from "@/constants/enums";
 
 export default function UtilityAnalyticsPage() {
-  const [utilityType, setUtilityType] = useState<UtilityType>("ELECTRICITY");
+  const [utilityType, setUtilityType] = useState<UTILITY_TYPE>("ELECTRICITY");
   const [stats, setStats] = useState<UtilityStats | null>(null);
   const [timeFrame, setTimeFrame] = useState<"daily" | "weekly" | "monthly">(
     "monthly"
@@ -88,17 +90,17 @@ export default function UtilityAnalyticsPage() {
         </div>
 
         <div className="flex flex-wrap gap-4 mt-6">
-          {["ELECTRICITY", "WATER", "WASTE"].map((type) => (
+          {UTILITY_TYPE_OPTIONS.map((type) => (
             <button
-              key={type}
-              onClick={() => setUtilityType(type as UtilityType)}
+              key={type.value}
+              onClick={() => setUtilityType(type.value)}
               className={`px-4 py-2 rounded-md ${
-                utilityType === type
+                utilityType === type.value
                   ? "bg-primary-100 text-white"
                   : "bg-zinc-800 text-zinc-300 hover:bg-zinc-700"
               }`}
             >
-              {type}
+              {type.label}
             </button>
           ))}
         </div>

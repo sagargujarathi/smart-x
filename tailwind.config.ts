@@ -10,6 +10,23 @@ export default {
   ],
   theme: {
     extend: {
+      typography: (theme) => ({
+        invert: {
+          css: {
+            "--tw-prose-body": theme("colors.zinc.300"),
+            "--tw-prose-headings": theme("colors.white"),
+            "--tw-prose-links": theme("colors.primary.100"),
+            "--tw-prose-bold": theme("colors.white"),
+            "--tw-prose-counters": theme("colors.zinc.400"),
+            "--tw-prose-bullets": theme("colors.zinc.400"),
+            "--tw-prose-quotes": theme("colors.zinc.300"),
+            "--tw-prose-code": theme("colors.white"),
+            "--tw-prose-hr": theme("colors.zinc.700"),
+            "--tw-prose-th-borders": theme("colors.zinc.700"),
+            "--tw-prose-td-borders": theme("colors.zinc.700"),
+          },
+        },
+      }),
       colors: {
         primary: {
           100: "#4b45ff", // Updated to new primary color

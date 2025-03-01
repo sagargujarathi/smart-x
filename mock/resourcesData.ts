@@ -238,3 +238,212 @@ Want to learn more about our water conservation methods? [Check out our detailed
     },
   ],
 };
+
+export const POSTS = [
+  {
+    id: 1,
+    title: "Future of Smart Cities",
+    excerpt: "Exploring how smart utilities are shaping future cities...",
+    author: "Dr. Sarah Johnson",
+    date: "2024-01-15",
+    readTime: "10 min",
+    category: "technology",
+    image: "https://images.unsplash.com/photo-1473341304170-971dccb5ac1e",
+    featured: true,
+    content: `
+# The Future of Smart Cities
+
+Smart cities are revolutionizing the way we live and interact with urban infrastructure. Through the integration of IoT devices, AI, and smart utility management systems, cities are becoming more efficient and sustainable than ever before.
+
+## Key Technologies Driving Change
+
+### 1. Internet of Things (IoT)
+- Smart sensors for real-time monitoring
+- Connected devices for automated responses
+- Integrated data collection systems
+
+### 2. Artificial Intelligence
+- Predictive maintenance
+- Resource optimization
+- Pattern recognition for anomaly detection
+
+## Impact on Urban Living
+
+The implementation of smart utility systems has shown remarkable results:
+
+- 30% reduction in water wastage
+- 25% improvement in energy efficiency
+- 40% better waste management
+
+> "Smart cities aren't just about technology; they're about improving quality of life while reducing environmental impact." - Dr. Sarah Johnson
+
+## Looking Ahead
+
+The future holds even more promise with:
+
+1. Advanced grid systems
+2. Automated resource distribution
+3. AI-powered decision making
+4. Citizen engagement platforms
+
+Read more about our smart city initiatives and how you can participate in building a sustainable future.
+    `,
+  },
+  {
+    id: 2,
+    title: "Water Conservation: A Digital Approach",
+    excerpt: "How IoT sensors are revolutionizing water management systems...",
+    author: "Ramesh Kumar",
+    date: "2024-01-18",
+    readTime: "8 min",
+    category: "water",
+    image: "https://images.unsplash.com/photo-1581244277943-fe4a9c777189",
+    featured: false,
+    content: `
+# Water Conservation: A Digital Approach
+
+Digital technology is transforming how we monitor and manage water resources. This article explores the latest innovations in smart water management.
+
+## Smart Monitoring Systems
+
+Modern water management systems incorporate:
+
+1. Real-time leak detection
+2. Pressure monitoring
+3. Quality sensors
+4. Usage analytics
+
+### Benefits of Digital Water Management
+
+- Immediate leak detection
+- Reduced water wastage
+- Better quality control
+- Cost savings
+
+## Implementation Strategies
+
+\`\`\`javascript
+// Example monitoring system algorithm
+function detectAnomalies(readings) {
+  const threshold = calculateThreshold(readings);
+  return readings.filter(reading => reading > threshold);
+}
+\`\`\`
+
+> "Digital transformation in water management could save billions of gallons annually." - Ramesh Kumar
+
+## Best Practices
+
+| Practice | Impact | Implementation Cost |
+|----------|---------|-------------------|
+| Smart Metering | High | Medium |
+| Leak Detection | High | Low |
+| Quality Monitoring | Medium | High |
+
+    `,
+  },
+  {
+    id: 3,
+    title: "Smart Meters: The Game Changer",
+    excerpt:
+      "Understanding the impact of smart meters on utility management...",
+    author: "Priya Reddy",
+    date: "2024-01-20",
+    readTime: "12 min",
+    category: "electricity",
+    image: "https://images.unsplash.com/photo-1640622300473-977435c38c04", // Updated image URL
+    featured: true,
+    content: `
+# Smart Meters: The Game Changer
+
+Smart meters are revolutionizing utility management by providing real-time data and insights. This comprehensive guide explores their impact and benefits.
+
+## Understanding Smart Meters
+
+Smart meters offer:
+- Real-time consumption tracking
+- Automated billing
+- Usage pattern analysis
+- Demand response capabilities
+
+### Technical Implementation
+
+\`\`\`python
+class SmartMeter:
+    def __init__(self):
+        self.readings = []
+        
+    def record_usage(self, reading):
+        self.readings.append({
+            'value': reading,
+            'timestamp': datetime.now()
+        })
+\`\`\`
+
+## Cost Benefits
+
+1. Reduced manual reading costs
+2. Better leak detection
+3. Improved billing accuracy
+4. Energy savings
+
+> "Smart meters are not just devices; they're the foundation of modern utility management." - Priya Reddy
+    `,
+  },
+  {
+    id: 4,
+    title: "Green Energy Transition",
+    excerpt: "How Telangana is leading the renewable energy revolution...",
+    author: "Arun Sharma",
+    date: "2024-01-22",
+    readTime: "15 min",
+    category: "sustainability",
+    image: "https://images.unsplash.com/photo-1509391366360-2e959784a276",
+    featured: false,
+  },
+  {
+    id: 5,
+    title: "Digital Waste Management",
+    excerpt: "Smart solutions for urban waste collection and processing...",
+    author: "Kavita Patel",
+    date: "2024-01-25",
+    readTime: "7 min",
+    category: "waste",
+    image: "https://images.unsplash.com/photo-1532996122724-e3c354a0b15b",
+    featured: false,
+  },
+  {
+    id: 6,
+    title: "AI in Utility Management",
+    excerpt:
+      "How artificial intelligence is optimizing resource distribution...",
+    author: "Dr. Vikram Mehta",
+    date: "2024-01-28",
+    readTime: "11 min",
+    category: "technology",
+    image: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e",
+    featured: true,
+  },
+  {
+    id: 7,
+    title: "Smart Home Integration",
+    excerpt: "Connecting your home to the city's smart grid network...",
+    author: "Lisa Chen",
+    date: "2024-01-30",
+    readTime: "9 min",
+    category: "technology",
+    image: "https://images.unsplash.com/photo-1558002038-1055907df827",
+    featured: false,
+  },
+  {
+    id: 8,
+    title: "Sustainable Urban Planning",
+    excerpt: "Building cities with integrated smart utility systems...",
+    author: "Raj Malhotra",
+    date: "2024-02-01",
+    readTime: "13 min",
+    category: "sustainability",
+    image: "https://images.unsplash.com/photo-1518005020951-eccb494ad742",
+    featured: true,
+  },
+];
