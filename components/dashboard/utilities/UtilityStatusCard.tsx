@@ -1,5 +1,5 @@
 import { UtilityData } from "@/types/utility";
-import { FaWater, FaLightbulb, FaTrash } from "react-icons/fa";
+import { FaWater, FaLightbulb, FaCloud, FaTrash } from "react-icons/fa";
 import Link from "next/link";
 
 interface Props {
@@ -10,12 +10,14 @@ const utilityIcons = {
   WATER: FaWater,
   ELECTRICITY: FaLightbulb,
   WASTE: FaTrash,
+  AIRQUALITY: FaCloud,
 };
 
 const utilityColors = {
   WATER: "text-blue-400",
   ELECTRICITY: "text-yellow-400",
   WASTE: "text-green-400",
+  AIRQUALITY: "text-gray-400",
 };
 
 export const UtilityStatusCard = ({ utility }: Props) => {

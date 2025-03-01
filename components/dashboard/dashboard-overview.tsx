@@ -20,6 +20,7 @@ export const DashboardOverview = () => {
       try {
         const data = await utilityService.getUtilities();
         setUtilities(data);
+        console.log("Utilities data:", data);
       } catch (error) {
         console.error("Error fetching utilities:", error);
       } finally {

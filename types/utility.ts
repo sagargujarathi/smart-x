@@ -1,4 +1,4 @@
-export type UtilityType = "WATER" | "ELECTRICITY" | "WASTE";
+export type UtilityType = "WATER" | "ELECTRICITY" | "WASTE" | "AIRQUALITY";
 
 export interface UtilityData {
   id: string;

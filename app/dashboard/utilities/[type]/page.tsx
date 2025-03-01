@@ -30,7 +30,7 @@ export default function UtilityDetailsPage({ params }: Props) {
   const [predictionError, setPredictionError] = useState<string | null>(null);
   const [isPredictionLoading, setIsPredictionLoading] = useState(true);
 
-  if (!["WATER", "ELECTRICITY", "WASTE"].includes(type)) {
+  if (!["WATER", "ELECTRICITY", "WASTE", "AIRQUALITY"].includes(type)) {
     notFound();
   }
 
@@ -97,6 +97,16 @@ export default function UtilityDetailsPage({ params }: Props) {
           "Improve sorting systems",
           "Expand recycling programs",
           "Community education",
+        ],
+      },
+      AIRQUALITY: {
+        current: 80,
+        target: 95,
+        unit: "AQI",
+        solutions: [
+          "Improve ventilation systems",
+          "Install air purifiers",
+          "Regular air quality monitoring",
         ],
       },
     };

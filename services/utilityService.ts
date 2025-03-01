@@ -40,7 +40,7 @@ const mockUtilities: UtilityData[] = [
     unit: "tons",
     status: "normal",
     lastUpdated: new Date().toISOString(),
-  },
+  }
 ];
 
 const mockAlerts: UtilityAlert[] = [
@@ -123,7 +123,7 @@ const MOCK_ALERTS = [
     },
     timestamp: new Date().toISOString(),
   },
-  // Add more mock alerts as needed
+  
 ];
 
 const wait = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));

@@ -80,6 +80,8 @@ export const UtilityChart = ({ stats, type, timeFrame, weekly }: Props) => {
           return "rgba(250, 204, 21, 0.8)";
         case "WASTE":
           return "rgba(74, 222, 128, 0.8)";
+        case "AIRQUALITY":
+          return "rgba(150, 150, 150, 0.8)";
       }
     };
 
