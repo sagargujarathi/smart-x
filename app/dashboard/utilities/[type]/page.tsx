@@ -13,6 +13,7 @@ import { EfficiencyMetrics } from "@/components/dashboard/utilities/EfficiencyMe
 import { SolutionsList } from "@/components/dashboard/utilities/SolutionsList";
 import { UtilityPredictions } from "@/components/dashboard/predictions/UtilityPredictions";
 import { LoadingSpinner } from "@/components/ui/loading-spinner";
+import { UTILITY_TYPE_OPTIONS } from "@/constants";
 
 interface Props {
   params: Promise<{ type: string }>;
@@ -21,6 +22,7 @@ interface Props {
 export default function UtilityDetailsPage({ params }: Props) {
   const resolvedParams = use(params);
   const type = resolvedParams.type.toUpperCase() as UtilityType;
+  const typeObj = UTILITY_TYPE_OPTIONS.find((t) => t.value === type);
   const [stats, setStats] = useState<UtilityStats | null>(null);
   const [timeFrame, setTimeFrame] = useState<"daily" | "weekly" | "monthly">(
     "daily"
@@ -128,7 +130,7 @@ export default function UtilityDetailsPage({ params }: Props) {
     <DashboardLayout>
       <div className="space-y-8">
         <h1 className="text-2xl font-bold text-white/90">
-          {type} Management Dashboard
+          {typeObj?.label} Management Dashboard
         </h1>
 
         <StatsSummary stats={stats} type={type} />

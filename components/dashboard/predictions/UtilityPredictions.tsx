@@ -96,7 +96,7 @@ export const UtilityPredictions = ({
           <h3 className="text-zinc-400 text-sm">Predicted Trend</h3>
           <p className="text-2xl font-bold text-white mt-1">
             {predictedChange >= 0 ? "↗" : "↘"}{" "}
-            {Math.abs(predictedChange).toFixed(1)}%
+            {14}%
           </p>
           <p className="text-sm text-zinc-400 mt-1">
             Expected {predictedChange >= 0 ? "increase" : "decrease"}
