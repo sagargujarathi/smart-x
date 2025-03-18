@@ -48,9 +48,8 @@ const ComplaintPage = () => {
       if (!response.ok) throw new Error("Failed to submit complaint");
 
       setSuccess(true);
-      reset(); // Clear form
+      reset();
     } catch (err) {
-      // setError("Failed to submit complaint. Please try again.");
       setSuccess(true);
       reset();
     } finally {
