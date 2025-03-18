@@ -19,6 +19,7 @@ interface ComplaintFormData {
   complaintType: string;
   complaint: string;
 }
+// make this server component | abstract logic into another component and make it client
 
 const ComplaintPage = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -48,9 +49,8 @@ const ComplaintPage = () => {
       if (!response.ok) throw new Error("Failed to submit complaint");
 
       setSuccess(true);
-      reset(); // Clear form
+      reset();
     } catch (err) {
-      // setError("Failed to submit complaint. Please try again.");
       setSuccess(true);
       reset();
     } finally {
