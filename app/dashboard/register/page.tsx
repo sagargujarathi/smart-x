@@ -19,6 +19,7 @@ interface ComplaintFormData {
   complaintType: string;
   complaint: string;
 }
+// make this server component | abstract logic into another component and make it client
 
 const ComplaintPage = () => {
   const [isLoading, setIsLoading] = useState(false);
